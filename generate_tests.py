@@ -1,3 +1,4 @@
+import os
 import asyncio
 import json
 import re
@@ -34,11 +35,37 @@ EXPECTED_FILES = {
 
 
 def read_spec():
+    if not SPEC_PATH.exists():
+        raise FileNotFoundError(f"spec.md was not found: {SPEC_PATH}")
+
     text = SPEC_PATH.read_text(encoding="utf-8")
-    match = re.search(r'GEMINI_API_KEY\s*=\s*["\']([^"\']+)["\']', text)
-    if not match or not match.group(1).strip() or match.group(1).strip() == "PASTE_YOUR_GEMINI_API_KEY_HERE":
-        raise ValueError('Put your real Gemini API key in spec.md as GEMINI_API_KEY = "..."')
-    return text, match.group(1).strip()
+
+    # Prefer the environment variable so the real API key
+    # never needs to be stored in spec.md or GitHub.
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
+
+    if api_key:
+        return text, api_key
+
+    # Local fallback: allow a real key in spec.md for backward compatibility.
+    match = re.search(
+        r'GEMINI_API_KEY\s*=\s*["\']([^"\']+)["\']',
+        text,
+    )
+
+    if match:
+        candidate = match.group(1).strip()
+
+        if candidate and candidate not in {
+            "YOUR_GEMINI_API_KEY",
+            "PASTE_YOUR_GEMINI_API_KEY_HERE",
+        }:
+            return text, candidate
+
+    raise ValueError(
+        "Gemini API key not found. Set the GEMINI_API_KEY environment "
+        "variable before running generate_tests.py."
+    )
 
 
 def call_api(method, url, body=None, headers=None):
