@@ -1,4 +1,5 @@
 import requests
+import pytest
 
 def test_get_rooms(api_base_url):
     resp = requests.get(f"{api_base_url}/room/")
