@@ -38,6 +38,7 @@ test-results/
 /generated/screenshots/
 /generated/.pytest_cache/
 /generated/__pycache__/
+/evidence/
 
 # IDE and OS files
 .vscode/
