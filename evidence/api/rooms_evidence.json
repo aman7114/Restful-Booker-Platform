@@ -1,0 +1,182 @@
+{
+  "endpoint": "https://automationintesting.online/api/room",
+  "scenarios": [
+    {
+      "scenario": "get_all_rooms",
+      "method": "GET",
+      "url": "https://automationintesting.online/api/room",
+      "request_payload": null,
+      "response_status": 200,
+      "response_headers": {
+        "Date": "Thu, 24 Sep 2026 08:48:14 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Server": "cloudflare",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+        "x-railway-request-id": "8SseuJivQRyh41D955So4g",
+        "x-railway-edge": "cdg1",
+        "x-hikari-trace": "cdg1.8vsn",
+        "cf-cache-status": "DYNAMIC",
+        "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=QRdZ%2B2bMJ2NLPu%2BLh3z%2BJTU63ws7qucXh86Bn52G6fed3x9%2Fz0KvAEWjZxzE2SWX3qLwgOQenVfRsdO8UAjKlZjsmZwCsc0%2FM%2F%2BEZHxj7ZUJx%2BsJ3URrUoUGhVBu8wxH3019tEzIzNCIwZbW4A%3D%3D\"}]}",
+        "Content-Encoding": "zstd",
+        "CF-RAY": "a4008767edd74b90-MRS",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "response_body": {
+        "rooms": [
+          {
+            "accessible": true,
+            "description": "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
+            "features": [
+              "TV",
+              "WiFi",
+              "Safe"
+            ],
+            "image": "/images/room1.jpg",
+            "roomName": "101",
+            "roomPrice": 100,
+            "roomid": 1,
+            "type": "Single"
+          },
+          {
+            "accessible": true,
+            "description": "Vestibulum sollicitudin, lectus ac mollis consequat, lorem orci ultrices tellus, eleifend euismod tortor dui egestas erat. Phasellus et ipsum nisl. ",
+            "features": [
+              "TV",
+              "Radio",
+              "Safe"
+            ],
+            "image": "/images/room2.jpg",
+            "roomName": "102",
+            "roomPrice": 150,
+            "roomid": 2,
+            "type": "Double"
+          },
+          {
+            "accessible": true,
+            "description": "Etiam metus metus, fringilla ac sagittis id, consequat vel neque. Nunc commodo quis nisl nec posuere. Etiam at accumsan ex. ",
+            "features": [
+              "Radio",
+              "WiFi",
+              "Safe"
+            ],
+            "image": "/images/room3.jpg",
+            "roomName": "103",
+            "roomPrice": 225,
+            "roomid": 3,
+            "type": "Suite"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "get_room_1",
+      "method": "GET",
+      "url": "https://automationintesting.online/api/room/1",
+      "request_payload": null,
+      "response_status": 200,
+      "response_headers": {
+        "Date": "Thu, 24 Sep 2026 08:48:14 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Content-Encoding": "gzip",
+        "Server": "cloudflare",
+        "vary": "Accept-Encoding",
+        "x-railway-request-id": "TKxDudj6TZWXAhAwnbOCzg",
+        "x-railway-edge": "cdg1",
+        "x-hikari-trace": "cdg1.8vsn",
+        "cf-cache-status": "DYNAMIC",
+        "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=QHPFeCm6FKCuaFt0YSagQHqyNfWLnBCVHxkVdPlySZqxxnmuOJxY77PJISULGXgtX%2BWejMdCYwG6h%2B0vGZ84I1Xu05Jkv3pvDqs%2B7aqbkeJLss2eWthAydVQP%2B7FpxoXtdbYHdDi5d0vr6KfGw%3D%3D\"}]}",
+        "CF-RAY": "a40087699a6b4b90-MRS",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "response_body": {
+        "accessible": true,
+        "description": "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
+        "features": [
+          "TV",
+          "WiFi",
+          "Safe"
+        ],
+        "image": "/images/room1.jpg",
+        "roomName": "101",
+        "roomPrice": 100,
+        "roomid": 1,
+        "type": "Single"
+      }
+    },
+    {
+      "scenario": "get_invalid_room",
+      "method": "GET",
+      "url": "https://automationintesting.online/api/room/99999",
+      "request_payload": null,
+      "response_status": 500,
+      "response_headers": {
+        "Date": "Thu, 24 Sep 2026 08:48:14 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Content-Encoding": "gzip",
+        "Server": "cloudflare",
+        "vary": "Accept-Encoding",
+        "x-railway-request-id": "mKvldMqOSKWiidZbw9P4nw",
+        "x-railway-edge": "cdg1",
+        "x-hikari-trace": "cdg1.8vsn",
+        "cf-cache-status": "DYNAMIC",
+        "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=%2FuLjEedmiILz33i9Wkcu3LS5T3JmslLd4bU3V%2BWYmmhqO5wTYJCSyY%2Fw%2Fz90%2FqK7NHZGXw4k4PGlDxC96Rrbij3F%2B11uqU2pTPpWSvWjmNHv6td9Q96b0T02Z5y4JUtEIJl8xAITB%2FAwsdV2Jg%3D%3D\"}]}",
+        "CF-RAY": "a400876b5f004b90-MRS",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "response_body": {
+        "timestamp": "2026-09-24T08:48:14.647Z",
+        "status": 500,
+        "error": "Internal Server Error",
+        "path": "/room/99999"
+      }
+    }
+  ],
+  "first_room_id": 1,
+  "discovered_rooms": [
+    {
+      "roomid": 1,
+      "roomName": "101",
+      "type": "Single",
+      "roomPrice": 100,
+      "accessible": true,
+      "features": [
+        "TV",
+        "WiFi",
+        "Safe"
+      ]
+    },
+    {
+      "roomid": 2,
+      "roomName": "102",
+      "type": "Double",
+      "roomPrice": 150,
+      "accessible": true,
+      "features": [
+        "TV",
+        "Radio",
+        "Safe"
+      ]
+    },
+    {
+      "roomid": 3,
+      "roomName": "103",
+      "type": "Suite",
+      "roomPrice": 225,
+      "accessible": true,
+      "features": [
+        "Radio",
+        "WiFi",
+        "Safe"
+      ]
+    }
+  ]
+}

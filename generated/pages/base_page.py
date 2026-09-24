@@ -1,11 +1,12 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 
 class BasePage:
-    def __init__(self, page: Page, base_url: str):
+    def __init__(self, page: Page):
         self.page = page
-        self.base_url = base_url
 
-    def open(self, path: str = "/"):
-        self.page.goto(self.base_url.rstrip("/") + path)
-        self.page.wait_for_load_state("domcontentloaded")
+    def navigate(self, url: str):
+        self.page.goto(url, wait_until="domcontentloaded")
+
+    def wait_for_load(self):
+        self.page.wait_for_load_state("networkidle")

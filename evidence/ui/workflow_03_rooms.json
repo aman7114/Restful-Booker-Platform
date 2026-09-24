@@ -1,0 +1,82 @@
+{
+  "workflow": "rooms",
+  "discovered_rooms": [
+    {
+      "name": "Welcome to Shady Meadows B&B",
+      "ref": "f2e29",
+      "book_ref": "f2e31",
+      "book_action_name": "Book Now",
+      "booking_actions": [
+        {
+          "name": "Book Now",
+          "ref": "f2e31"
+        }
+      ]
+    },
+    {
+      "name": "Single",
+      "ref": "f2e65",
+      "book_ref": "f2e77",
+      "book_action_name": "Book now",
+      "booking_actions": [
+        {
+          "name": "Book now",
+          "ref": "f2e77"
+        }
+      ]
+    },
+    {
+      "name": "Double",
+      "ref": "f2e83",
+      "book_ref": "f2e95",
+      "book_action_name": "Book now",
+      "booking_actions": [
+        {
+          "name": "Book now",
+          "ref": "f2e95"
+        }
+      ]
+    },
+    {
+      "name": "Suite",
+      "ref": "f2e101",
+      "book_ref": "f2e113",
+      "book_action_name": "Book now",
+      "booking_actions": [
+        {
+          "name": "Book now",
+          "ref": "f2e113"
+        }
+      ]
+    },
+    {
+      "name": "Quick Links",
+      "ref": "f2e208",
+      "book_ref": "f2e215",
+      "book_action_name": "Booking",
+      "booking_actions": [
+        {
+          "name": "Booking",
+          "ref": "f2e215"
+        }
+      ]
+    }
+  ],
+  "selected_room": {
+    "name": "Welcome to Shady Meadows B&B",
+    "ref": "f2e29",
+    "book_ref": "f2e31",
+    "book_action_name": "Book Now",
+    "booking_actions": [
+      {
+        "name": "Book Now",
+        "ref": "f2e31"
+      }
+    ]
+  },
+  "book_now_ref": "f2e31",
+  "reservation_url": "https://automationintesting.online/",
+  "navigation_success": true,
+  "snapshot": "### Page\n- Page URL: https://automationintesting.online/\n- Page Title: Restful-booker-platform demo\n### Snapshot\n```yaml\n- generic [active] [ref=f2e1]:\n  - generic [ref=f2e3]:\n    - navigation [ref=f2e7]:\n      - generic [ref=f2e8]:\n        - link \"Shady Meadows B&B\" [ref=f2e9] [cursor=pointer]:\n          - /url: /\n        - list [ref=f2e12]:\n          - listitem [ref=f2e13]:\n            - link \"Rooms\" [ref=f2e14] [cursor=pointer]:\n              - /url: /#rooms\n          - listitem [ref=f2e15]:\n            - link \"Booking\" [ref=f2e16] [cursor=pointer]:\n              - /url: /#booking\n          - listitem [ref=f2e17]:\n            - link \"Amenities\" [ref=f2e18] [cursor=pointer]:\n              - /url: /#amenities\n          - listitem [ref=f2e19]:\n            - link \"Location\" [ref=f2e20] [cursor=pointer]:\n              - /url: /#location\n          - listitem [ref=f2e21]:\n            - link \"Contact\" [ref=f2e22] [cursor=pointer]:\n              - /url: /#contact\n          - listitem [ref=f2e23]:\n            - link \"Admin\" [ref=f2e24] [cursor=pointer]:\n              - /url: /admin\n    - generic [ref=f2e28]:\n      - heading \"Welcome to Shady Meadows B&B\" [level=1] [ref=f2e29]\n      - paragraph [ref=f2e30]: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.\n      - link \"Book Now\" [ref=f2e31] [cursor=pointer]:\n        - /url: \"#booking\"\n    - generic [ref=f2e32]:\n      - generic [ref=f2e36]:\n        - heading \"Check Availability & Book Your Stay\" [level=3] [ref=f2e37]\n        - generic [ref=f2e39]:\n          - generic [ref=f2e40]:\n            - generic [ref=f2e41]: Check In\n            - textbox [ref=f2e44]: 24/09/2026\n          - generic [ref=f2e45]:\n            - generic [ref=f2e46]: Check Out\n            - textbox [ref=f2e49]: 25/09/2026\n          - button \"Check Availability\" [ref=f2e52] [cursor=pointer]\n      - generic [ref=f2e55]:\n        - generic [ref=f2e56]:\n          - heading \"Our Rooms\" [level=2] [ref=f2e57]\n          - paragraph [ref=f2e58]: Comfortable beds and delightful breakfast from locally sourced ingredients\n        - generic [ref=f2e59]:\n          - generic [ref=f2e61]:\n            - img \"Single Room\" [ref=f2e63]\n            - generic [ref=f2e64]:\n              - heading \"Single\" [level=5] [ref=f2e65]\n              - paragraph [ref=f2e66]: Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.\n              - generic [ref=f2e68]:\n                - generic [ref=f2e69]:\n                  - generic [ref=f2e70]: \n                  - text: TV\n                - generic [ref=f2e71]:\n                  - generic [ref=f2e72]: \n                  - text: WiFi\n                - generic [ref=f2e73]:\n                  - generic [ref=f2e74]: \n                  - text: Safe\n            - generic [ref=f2e75]:\n              - generic [ref=f2e76]: £100 per night\n              - link \"Book now\" [ref=f2e77] [cursor=pointer]:\n                - /url: /reservation/1?checkin=2026-09-24&checkout=2026-09-25\n          - generic [ref=f2e79]:\n            - img \"Single Room\" [ref=f2e81]\n            - generic [ref=f2e82]:\n              - heading \"Double\" [level=5] [ref=f2e83]\n              - paragraph [ref=f2e84]: Vestibulum sollicitudin, lectus ac mollis consequat, lorem orci ultrices tellus, eleifend euismod tortor dui egestas erat. Phasellus et ipsum nisl.\n              - generic [ref=f2e86]:\n                - generic [ref=f2e87]:\n                  - generic [ref=f2e88]: \n                  - text: TV\n                - generic [ref=f2e89]:\n                  - generic [ref=f2e90]: \n                  - text: Radio\n                - generic [ref=f2e91]:\n                  - generic [ref=f2e92]: \n                  - text: Safe\n            - generic [ref=f2e93]:\n              - generic [ref=f2e94]: £150 per night\n              - link \"Book now\" [ref=f2e95] [cursor=pointer]:\n                - /url: /reservation/2?checkin=2026-09-24&checkout=2026-09-25\n          - generic [ref=f2e97]:\n            - img \"Single Room\" [ref=f2e99]\n            - generic [ref=f2e100]:\n              - heading \"Suite\" [level=5] [ref=f2e101]\n              - paragraph [ref=f2e102]: Etiam metus metus, fringilla ac sagittis id, consequat vel neque. Nunc commodo quis nisl nec posuere. Etiam at accumsan ex.\n              - generic [ref=f2e104]:\n                - generic [ref=f2e105]:\n                  - generic [ref=f2e106]: \n                  - text: Radio\n                - generic [ref=f2e107]:\n                  - generic [ref=f2e108]: \n                  - text: WiFi\n                - generic [ref=f2e109]:\n                  - generic [ref=f2e110]: \n                  - text: Safe\n            - generic [ref=f2e111]:\n              - generic [ref=f2e112]: £225 per night\n              - link \"Book now\" [ref=f2e113] [cursor=pointer]:\n                - /url: /reservation/3?checkin=2026-09-24&checkout=2026-09-25\n    - generic [ref=f2e115]:\n      - generic [ref=f2e116]:\n        - heading \"Our Location\" [level=2] [ref=f2e117]\n        - paragraph [ref=f2e118]: Find us in the beautiful Newingtonfordburyshire countryside\n      - generic [ref=f2e119]:\n        - generic [ref=f2e123]:\n          - generic [ref=f2e126]:\n            - generic:\n              - img:\n                - generic [ref=f2e127] [cursor=pointer]\n          - generic [ref=f2e130]:\n            - generic [ref=f2e131]:\n              - link \"Pigeon\" [ref=f2e132] [cursor=pointer]:\n                - /url: https://pigeon-maps.js.org/\n              - text: \"|\"\n            - generic [ref=f2e133]:\n              - text: ©\n              - link \"OpenStreetMap\" [ref=f2e134] [cursor=pointer]:\n                - /url: https://www.openstreetmap.org/copyright\n              - text: contributors\n        - generic [ref=f2e137]:\n          - heading \"Contact Information\" [level=3] [ref=f2e138]\n          - generic [ref=f2e139]:\n            - generic [ref=f2e140]: \n            - generic [ref=f2e142]:\n              - heading \"Address\" [level=5] [ref=f2e143]\n              - paragraph [ref=f2e144]: Shady Meadows B&B, Shadows valley, Newingtonfordburyshire, Dilbery, N1 1AA\n          - generic [ref=f2e145]:\n            - generic [ref=f2e146]: \n            - generic [ref=f2e148]:\n              - heading \"Phone\" [level=5] [ref=f2e149]\n              - paragraph [ref=f2e150]: \"012345678901\"\n          - generic [ref=f2e151]:\n            - generic [ref=f2e152]: \n            - generic [ref=f2e154]:\n              - heading \"Email\" [level=5] [ref=f2e155]\n              - paragraph [ref=f2e156]: fake@fakeemail.com\n          - separator [ref=f2e157]\n          - heading \"Getting Here\" [level=4] [ref=f2e158]\n          - paragraph [ref=f2e159]: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.\n    - generic [ref=f2e165]:\n      - heading \"Send Us a Message\" [level=3] [ref=f2e166]\n      - generic [ref=f2e167]:\n        - generic [ref=f2e168]:\n          - generic [ref=f2e169]: Name\n          - textbox \"Name\" [ref=f2e170]\n        - generic [ref=f2e171]:\n          - generic [ref=f2e172]: Email\n          - textbox \"Email\" [ref=f2e173]\n        - generic [ref=f2e174]:\n          - generic [ref=f2e175]: Phone\n          - textbox \"Phone\" [ref=f2e176]\n        - generic [ref=f2e177]:\n          - generic [ref=f2e178]: Subject\n          - textbox \"Subject\" [ref=f2e179]\n        - generic [ref=f2e180]:\n          - generic [ref=f2e181]: Message\n          - textbox [ref=f2e182]\n        - button \"Submit\" [ref=f2e184] [cursor=pointer]\n    - contentinfo [ref=f2e185]:\n      - generic [ref=f2e186]:\n        - generic [ref=f2e187]:\n          - generic [ref=f2e188]:\n            - heading \"Shady Meadows B&B\" [level=5] [ref=f2e189]\n            - paragraph [ref=f2e190]: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.\n            - generic [ref=f2e191]:\n              - link \"\" [ref=f2e192] [cursor=pointer]:\n                - /url: \"#\"\n              - link \"\" [ref=f2e194] [cursor=pointer]:\n                - /url: \"#\"\n              - link \"\" [ref=f2e196] [cursor=pointer]:\n                - /url: \"#\"\n          - generic [ref=f2e198]:\n            - heading \"Contact Us\" [level=5] [ref=f2e199]\n            - list [ref=f2e200]:\n              - listitem [ref=f2e201]:\n                - generic [ref=f2e202]: \n                - text: Shady Meadows B&B, Shadows valley, Newingtonfordburyshire, Dilbery, N1 1AA\n              - listitem [ref=f2e203]:\n                - generic [ref=f2e204]: \n                - text: \"012345678901\"\n              - listitem [ref=f2e205]:\n                - generic [ref=f2e206]: \n                - text: fake@fakeemail.com\n          - generic [ref=f2e207]:\n            - heading \"Quick Links\" [level=5] [ref=f2e208]\n            - list [ref=f2e209]:\n              - listitem [ref=f2e210]:\n                - link \"Home\" [ref=f2e211] [cursor=pointer]:\n                  - /url: \"#\"\n              - listitem [ref=f2e212]:\n                - link \"Rooms\" [ref=f2e213] [cursor=pointer]:\n                  - /url: \"#\"\n              - listitem [ref=f2e214]:\n                - link \"Booking\" [ref=f2e215] [cursor=pointer]:\n                  - /url: \"#\"\n              - listitem [ref=f2e216]:\n                - link \"Contact\" [ref=f2e217] [cursor=pointer]:\n                  - /url: \"#\"\n        - separator [ref=f2e218]\n        - generic [ref=f2e220]:\n          - text: restful-booker-platform v2.2 Created by\n          - link \"Mark Winteringham\" [ref=f2e221] [cursor=pointer]:\n            - /url: http://www.mwtestconsultancy.co.uk\n          - text: \"- © 2019-26\"\n          - link \"Cookie-Policy\" [ref=f2e222] [cursor=pointer]:\n            - /url: /cookie\n          - text: \"-\"\n          - link \"Privacy-Policy\" [ref=f2e223] [cursor=pointer]:\n            - /url: /privacy\n          - text: \"-\"\n          - link \"Admin panel\" [ref=f2e224] [cursor=pointer]:\n            - /url: /admin\n  - alert [ref=f2e6]\n```",
+  "reservation_snapshot_excerpt": "### Page\n- Page URL: https://automationintesting.online/\n- Page Title: Restful-booker-platform demo\n### Snapshot\n```yaml\n- generic [active] [ref=f2e1]:\n  - generic [ref=f2e3]:\n    - navigation [ref=f2e7]:\n      - generic [ref=f2e8]:\n        - link \"Shady Meadows B&B\" [ref=f2e9] [cursor=pointer]:\n          - /url: /\n        - list [ref=f2e12]:\n          - listitem [ref=f2e13]:\n            - link \"Rooms\" [ref=f2e14] [cursor=pointer]:\n              - /url: /#rooms\n          - listitem [ref=f2e15]:\n            - link \"Booking\" [ref=f2e16] [cursor=pointer]:\n              - /url: /#booking\n          - listitem [ref=f2e17]:\n            - link \"Amenities\" [ref=f2e18] [cursor=pointer]:\n              - /url: /#amenities\n          - listitem [ref=f2e19]:\n            - link \"Location\" [ref=f2e20] [cursor=pointer]:\n              - /url: /#location\n          - listitem [ref=f2e21]:\n            - link \"Contact\" [ref=f2e22] [cursor=pointer]:\n              - /url: /#contact\n          - listitem [ref=f2e23]:\n            - link \"Admin\" [ref=f2e24] [cursor=pointer]:\n              - /url: /admin\n    - generic [ref=f2e28]:\n      - heading \"Welcome to Shady Meadows B&B\" [level=1] [ref=f2e29]\n      - paragraph [ref=f2e30]: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.\n      - link \"Book Now\" [ref=f2e31] [cursor=pointer]:\n        - /url: \"#booking\"\n    - generic [ref=f2e32]:\n      - generic [ref=f2e36]:\n        - heading \"Check Availability & Book Your Stay\" [level=3] [ref=f2e37]\n        - generic [ref=f2e39]:\n          - generic [ref=f2e40]:\n            - generic [ref=f2e41]: Check In\n            - textbox [ref=f2e44]: 24/09/2026\n          - generic [ref=f2e45]:\n            - generic [ref=f2e46]: Check Out\n            - textbox [ref=f2e49]: 25/09/2026\n         "
+}

@@ -1,0 +1,101 @@
+{
+  "workflow": "booking_flow",
+  "reservation_url": "https://automationintesting.online/",
+  "form_structure": {
+    "textboxes": [
+      {
+        "name": "Name",
+        "ref": "f5e170"
+      },
+      {
+        "name": "Email",
+        "ref": "f5e173"
+      },
+      {
+        "name": "Phone",
+        "ref": "f5e176"
+      },
+      {
+        "name": "Subject",
+        "ref": "f5e179"
+      }
+    ],
+    "buttons": [
+      {
+        "name": "Check Availability",
+        "ref": "f5e52"
+      },
+      {
+        "name": "Submit",
+        "ref": "f5e184"
+      }
+    ],
+    "headings": [
+      "Welcome to Shady Meadows B&B",
+      "Check Availability & Book Your Stay",
+      "Our Rooms",
+      "Single",
+      "Double",
+      "Suite",
+      "Our Location",
+      "Contact Information",
+      "Address",
+      "Phone",
+      "Email",
+      "Getting Here",
+      "Send Us a Message",
+      "Shady Meadows B&B",
+      "Contact Us",
+      "Quick Links"
+    ]
+  },
+  "date_picker_type": "checkin_checkout_inputs",
+  "guest_fields": [
+    {
+      "name": "Name",
+      "ref": "f5e170"
+    },
+    {
+      "name": "Email",
+      "ref": "f5e173"
+    },
+    {
+      "name": "Phone",
+      "ref": "f5e176"
+    },
+    {
+      "name": "Subject",
+      "ref": "f5e179"
+    }
+  ],
+  "submission_result": "",
+  "all_buttons": [
+    {
+      "name": "Check Availability",
+      "ref": "f5e52"
+    },
+    {
+      "name": "Submit",
+      "ref": "f5e184"
+    }
+  ],
+  "headings": [
+    "Welcome to Shady Meadows B&B",
+    "Check Availability & Book Your Stay",
+    "Our Rooms",
+    "Single",
+    "Double",
+    "Suite",
+    "Our Location",
+    "Contact Information",
+    "Address",
+    "Phone",
+    "Email",
+    "Getting Here",
+    "Send Us a Message",
+    "Shady Meadows B&B",
+    "Contact Us",
+    "Quick Links"
+  ],
+  "snapshot_excerpt": "### Page\n- Page URL: https://automationintesting.online/\n- Page Title: Restful-booker-platform demo\n### Snapshot\n```yaml\n- generic [active] [ref=f5e1]:\n  - generic [ref=f5e3]:\n    - navigation [ref=f5e7]:\n      - generic [ref=f5e8]:\n        - link \"Shady Meadows B&B\" [ref=f5e9] [cursor=pointer]:\n          - /url: /\n        - list [ref=f5e12]:\n          - listitem [ref=f5e13]:\n            - link \"Rooms\" [ref=f5e14] [cursor=pointer]:\n              - /url: /#rooms\n          - listitem [ref=f5e15]:\n            - link \"Booking\" [ref=f5e16] [cursor=pointer]:\n              - /url: /#booking\n          - listitem [ref=f5e17]:\n            - link \"Amenities\" [ref=f5e18] [cursor=pointer]:\n              - /url: /#amenities\n          - listitem [ref=f5e19]:\n            - link \"Location\" [ref=f5e20] [cursor=pointer]:\n              - /url: /#location\n          - listitem [ref=f5e21]:\n            - link \"Contact\" [ref=f5e22] [cursor=pointer]:\n              - /url: /#contact\n          - listitem [ref=f5e23]:\n            - link \"Admin\" [ref=f5e24] [cursor=pointer]:\n              - /url: /admin\n    - generic [ref=f5e28]:\n      - heading \"Welcome to Shady Meadows B&B\" [level=1] [ref=f5e29]\n      - paragraph [ref=f5e30]: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.\n      - link \"Book Now\" [ref=f5e31] [cursor=pointer]:\n        - /url: \"#booking\"\n    - generic [ref=f5e32]:\n      - generic [ref=f5e36]:\n        - heading \"Check Availability & Book Your Stay\" [level=3] [ref=f5e37]\n        - generic [ref=f5e39]:\n          - generic [ref=f5e40]:\n            - generic [ref=f5e41]: Check In\n            - textbox [ref=f5e44]: 24/09/2026\n          - generic [ref=f5e45]:\n            - generic [ref=f5e46]: Check Out\n            - textbox [ref=f5e49]: 25/09/2026\n          - button \"Check Availability\" [ref=f5e52] [cursor=pointer]\n      - generic [ref=f5e55]:\n        - generic [ref=f5e56]:\n          - heading \"Our Rooms\" [level=2] [ref=f5e57]\n          - paragraph [ref=f5e58]: Comfortable beds and delightful breakfast from locally sourced ingredients\n        - generic [ref=f5e59]:\n          - generic [ref=f5e61]:\n            - img \"Single Room\" [ref=f5e63]\n            - generic [ref=f5e64]:\n              - heading \"Single\" [level=5] [ref=f5e65]\n              - paragraph [ref=f5e66]: Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.\n              - generic [ref=f5e68]:\n                - generic [ref=f5e69]:\n                  - generic [ref=f5e70]: \n                  - text: TV\n                - generic [ref=f5e71]:\n                  - generic [ref=f5e72]: \n                  - text: WiFi\n                - generic [ref=f5e73]:\n                  - generic [ref=f5e74]: \n                  - text: Safe\n            - generic [ref=f5e75]:\n              - generic [ref=f5e76]: £100 per night\n              - link \"Book now\" [ref=f5e77] [cursor=pointer]:\n                - /url: /reservation/1?checkin=2026-09-24&checkout=2026-09-25\n          - generic [ref=f5e79]:\n            - img \"Single Room\" [ref=f5e81]\n            - generic [ref=f5e82]:\n              - heading \"Double\" [level=5] [ref=f5e83]\n              - paragraph [ref=f5e84]: Vestibulum sollicitudin, lectus ac mollis consequat, lorem orci ultrices tellus, eleifend euismod tortor dui egestas erat. Phasellus et ipsum nisl.\n              - generic [ref=f5e86]:\n                - generic [ref=f5e87]:\n                  - generic [ref=f5e88]: \n                  - text: TV\n                - generic [ref=f5e89]:\n                  - generic [ref=f5e90]: \n                  - text: Radio\n                - generic [ref=f5e91]:\n                  - generic [ref=f5e92]: \n                  - text: Safe\n  "
+}

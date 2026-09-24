@@ -1,0 +1,602 @@
+{
+  "api_base_url": "https://automationintesting.online/api",
+  "workflows": {
+    "auth": {
+      "endpoint": "https://automationintesting.online/api/auth/login",
+      "method": "POST",
+      "scenarios": [
+        {
+          "scenario": "valid_credentials",
+          "method": "POST",
+          "url": "https://automationintesting.online/api/auth/login",
+          "request_payload": {
+            "username": "admin",
+            "password": "password"
+          },
+          "response_status": 200,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:13 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "cK7SuK__RuOfoUAJN8N_Fg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=W8X3P5ANfMOLTx1SsHTaL3sGJTqy61j%2Fc9PgVww75cgD8nqz25LvMUgPW3Uvo%2BCfAhIB2p6Gb8VuDFffg3jgV40u2C2QiCPMBbfyqJbdZy7Tm9XBQ3fnOYlXv7Y9cws2XIKSqaSBANhK2UgHwA%3D%3D\"}]}",
+            "Content-Encoding": "zstd",
+            "CF-RAY": "a4008761bfa24b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "token": "rURuhjWkwD5OzONL"
+          }
+        },
+        {
+          "scenario": "invalid_password",
+          "method": "POST",
+          "url": "https://automationintesting.online/api/auth/login",
+          "request_payload": {
+            "username": "admin",
+            "password": "wrong_password_xyz"
+          },
+          "response_status": 401,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:13 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "B7qGB-dbTCSw--jds_GTAg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=qIRAh5glkehek7OAYVMrsRKH5ZwzFZavhJq5UlLU2Mrqr8IezkawuEElW8pFPXfNQsQa6cZHm99sJ9JlSPfA1OyFwI0XSNo2ajBWBeGAxUP96LaxeRcpuxGFVSk8GT61RQXQbH2gOn%2BFyON1gQ%3D%3D\"}]}",
+            "CF-RAY": "a40087633acd4b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "error": "Invalid credentials"
+          }
+        },
+        {
+          "scenario": "empty_credentials",
+          "method": "POST",
+          "url": "https://automationintesting.online/api/auth/login",
+          "request_payload": {
+            "username": "",
+            "password": ""
+          },
+          "response_status": 401,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:13 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "hNV96MSXQoSvqUuas_GTAg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=IIwi3xVlLRC5%2F5bC8gUK18ivSaWYe1Tb3z0k2VTZmdNMvyY6XnQfXQHvX3oDlybuTjVKpqivms8ot7FtiQWfyEr%2BRtwoS2ydieb%2F5RPhwVzcG2rMtdsC7kUGkjSqkfgy%2FOQNYY2Z2z5%2FySJ4pw%3D%3D\"}]}",
+            "CF-RAY": "a4008765987c4b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "error": "Invalid credentials"
+          }
+        }
+      ],
+      "token": "rURuhjWkwD5OzONL"
+    },
+    "rooms": {
+      "endpoint": "https://automationintesting.online/api/room",
+      "scenarios": [
+        {
+          "scenario": "get_all_rooms",
+          "method": "GET",
+          "url": "https://automationintesting.online/api/room",
+          "request_payload": null,
+          "response_status": 200,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:14 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "8SseuJivQRyh41D955So4g",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=QRdZ%2B2bMJ2NLPu%2BLh3z%2BJTU63ws7qucXh86Bn52G6fed3x9%2Fz0KvAEWjZxzE2SWX3qLwgOQenVfRsdO8UAjKlZjsmZwCsc0%2FM%2F%2BEZHxj7ZUJx%2BsJ3URrUoUGhVBu8wxH3019tEzIzNCIwZbW4A%3D%3D\"}]}",
+            "Content-Encoding": "zstd",
+            "CF-RAY": "a4008767edd74b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "rooms": [
+              {
+                "accessible": true,
+                "description": "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
+                "features": [
+                  "TV",
+                  "WiFi",
+                  "Safe"
+                ],
+                "image": "/images/room1.jpg",
+                "roomName": "101",
+                "roomPrice": 100,
+                "roomid": 1,
+                "type": "Single"
+              },
+              {
+                "accessible": true,
+                "description": "Vestibulum sollicitudin, lectus ac mollis consequat, lorem orci ultrices tellus, eleifend euismod tortor dui egestas erat. Phasellus et ipsum nisl. ",
+                "features": [
+                  "TV",
+                  "Radio",
+                  "Safe"
+                ],
+                "image": "/images/room2.jpg",
+                "roomName": "102",
+                "roomPrice": 150,
+                "roomid": 2,
+                "type": "Double"
+              },
+              {
+                "accessible": true,
+                "description": "Etiam metus metus, fringilla ac sagittis id, consequat vel neque. Nunc commodo quis nisl nec posuere. Etiam at accumsan ex. ",
+                "features": [
+                  "Radio",
+                  "WiFi",
+                  "Safe"
+                ],
+                "image": "/images/room3.jpg",
+                "roomName": "103",
+                "roomPrice": 225,
+                "roomid": 3,
+                "type": "Suite"
+              }
+            ]
+          }
+        },
+        {
+          "scenario": "get_room_1",
+          "method": "GET",
+          "url": "https://automationintesting.online/api/room/1",
+          "request_payload": null,
+          "response_status": 200,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:14 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Content-Encoding": "gzip",
+            "Server": "cloudflare",
+            "vary": "Accept-Encoding",
+            "x-railway-request-id": "TKxDudj6TZWXAhAwnbOCzg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=QHPFeCm6FKCuaFt0YSagQHqyNfWLnBCVHxkVdPlySZqxxnmuOJxY77PJISULGXgtX%2BWejMdCYwG6h%2B0vGZ84I1Xu05Jkv3pvDqs%2B7aqbkeJLss2eWthAydVQP%2B7FpxoXtdbYHdDi5d0vr6KfGw%3D%3D\"}]}",
+            "CF-RAY": "a40087699a6b4b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "accessible": true,
+            "description": "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
+            "features": [
+              "TV",
+              "WiFi",
+              "Safe"
+            ],
+            "image": "/images/room1.jpg",
+            "roomName": "101",
+            "roomPrice": 100,
+            "roomid": 1,
+            "type": "Single"
+          }
+        },
+        {
+          "scenario": "get_invalid_room",
+          "method": "GET",
+          "url": "https://automationintesting.online/api/room/99999",
+          "request_payload": null,
+          "response_status": 500,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:14 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Content-Encoding": "gzip",
+            "Server": "cloudflare",
+            "vary": "Accept-Encoding",
+            "x-railway-request-id": "mKvldMqOSKWiidZbw9P4nw",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=%2FuLjEedmiILz33i9Wkcu3LS5T3JmslLd4bU3V%2BWYmmhqO5wTYJCSyY%2Fw%2Fz90%2FqK7NHZGXw4k4PGlDxC96Rrbij3F%2B11uqU2pTPpWSvWjmNHv6td9Q96b0T02Z5y4JUtEIJl8xAITB%2FAwsdV2Jg%3D%3D\"}]}",
+            "CF-RAY": "a400876b5f004b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "timestamp": "2026-09-24T08:48:14.647Z",
+            "status": 500,
+            "error": "Internal Server Error",
+            "path": "/room/99999"
+          }
+        }
+      ],
+      "first_room_id": 1,
+      "discovered_rooms": [
+        {
+          "roomid": 1,
+          "roomName": "101",
+          "type": "Single",
+          "roomPrice": 100,
+          "accessible": true,
+          "features": [
+            "TV",
+            "WiFi",
+            "Safe"
+          ]
+        },
+        {
+          "roomid": 2,
+          "roomName": "102",
+          "type": "Double",
+          "roomPrice": 150,
+          "accessible": true,
+          "features": [
+            "TV",
+            "Radio",
+            "Safe"
+          ]
+        },
+        {
+          "roomid": 3,
+          "roomName": "103",
+          "type": "Suite",
+          "roomPrice": 225,
+          "accessible": true,
+          "features": [
+            "Radio",
+            "WiFi",
+            "Safe"
+          ]
+        }
+      ]
+    },
+    "bookings": {
+      "endpoint": "https://automationintesting.online/api/booking",
+      "scenarios": [
+        {
+          "scenario": "create_booking",
+          "method": "POST",
+          "url": "https://automationintesting.online/api/booking",
+          "request_payload": {
+            "roomid": 1,
+            "firstname": "Jordan2275",
+            "lastname": "Morgan0881",
+            "depositpaid": true,
+            "email": "test_ffdfb524@example.com",
+            "phone": "07922897430",
+            "bookingdates": {
+              "checkin": "2026-10-24",
+              "checkout": "2026-10-26"
+            }
+          },
+          "response_status": 201,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:15 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "vhu_fNUuQAyzkJhTWVMv1w",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=lFNJZNqAkU646P8OvdUNJoDxVyQvu%2B3xJ6AYmGK1YBkbgmgrUR5YHwuqFci429JdVtz85zQrH%2F%2BJXDkGeL6gU7bcOKSqTfqg%2B0SMBn%2B4SlEAl7jAILBcpocH3tzsveoPuz%2BZzeyuaCPb5oCkuw%3D%3D\"}]}",
+            "CF-RAY": "a400876d0b084b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "bookingdates": {
+              "checkin": "2026-10-24",
+              "checkout": "2026-10-26"
+            },
+            "bookingid": 4,
+            "depositpaid": true,
+            "firstname": "Jordan2275",
+            "lastname": "Morgan0881",
+            "roomid": 1
+          }
+        },
+        {
+          "scenario": "get_all_bookings",
+          "method": "GET",
+          "url": "https://automationintesting.online/api/booking",
+          "request_payload": null,
+          "response_status": 400,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:15 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "2d3IJo1FRIWP7TYDs_GTAg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=PDD0B7zX6Hfwyp3OcIh2z5KNOHnUCtu0BYywhNqTs%2F2guQXhAUorJd8rkoRX01KuK8jAYGfrlTTE6w8gIpnXGHgTjfHUNYhOFbdC1qc2h8XbQZu%2Fv9BClhEKzIaPxYF3DqTHk2JYUIBTTpaNsA%3D%3D\"}]}",
+            "CF-RAY": "a400876fb9d54b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "error": "Room ID is required"
+          }
+        },
+        {
+          "scenario": "get_booking_4",
+          "method": "GET",
+          "url": "https://automationintesting.online/api/booking/4",
+          "request_payload": null,
+          "response_status": 200,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:15 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Content-Encoding": "gzip",
+            "Server": "cloudflare",
+            "vary": "Accept-Encoding",
+            "x-railway-request-id": "SHHbz8fRSHODDqxT8Hk9cQ",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Iqsbh3RwFYKlI8b%2F7D6Pz1zBcwEikwboHDjnfrYVFVb7H4VDv9gVcu2sYmHCcAFdjyuxAsmYrVi5ySrymLWl4XX4Eqo2lewjOV1wqGxv74kLRXMARk4zOLt1mgiQcfCdtuMlVOo6Qf%2FLZtCJVw%3D%3D\"}]}",
+            "CF-RAY": "a40087714d3e4b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "bookingdates": {
+              "checkin": "2026-10-24",
+              "checkout": "2026-10-26"
+            },
+            "bookingid": 4,
+            "depositpaid": true,
+            "firstname": "Jordan2275",
+            "lastname": "Morgan0881",
+            "roomid": 1
+          }
+        },
+        {
+          "scenario": "update_booking_4",
+          "method": "PUT",
+          "url": "https://automationintesting.online/api/booking/4",
+          "request_payload": {
+            "roomid": 1,
+            "firstname": "Taylor2316",
+            "lastname": "Morgan0881",
+            "depositpaid": true,
+            "email": "test_ffdfb524@example.com",
+            "phone": "07922897430",
+            "bookingdates": {
+              "checkin": "2026-11-23",
+              "checkout": "2026-11-26"
+            }
+          },
+          "response_status": 200,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:16 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Content-Encoding": "gzip",
+            "Server": "cloudflare",
+            "vary": "Accept-Encoding",
+            "x-railway-request-id": "vRIoYzR8QtaShXawEuroCg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=IshyV19gEooCDvFCQ5Up3EHSvLHr08OTbjCmDIXyVSqZEFGqKdQJhEVIy%2BQs4BofUFkpPeQ%2FJw8qg8EhudKGiqapATYXupdWpUE8b%2BPDZK%2Fut4EJxMhrbcLm7GzXOjMeq4%2BaaD7jhfk5otMXGw%3D%3D\"}]}",
+            "CF-RAY": "a400877309e54b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "booking": {
+              "bookingdates": {
+                "checkin": "2026-11-23",
+                "checkout": "2026-11-26"
+              },
+              "bookingid": 4,
+              "depositpaid": true,
+              "firstname": "Taylor2316",
+              "lastname": "Morgan0881",
+              "roomid": 1
+            },
+            "bookingid": 4
+          }
+        },
+        {
+          "scenario": "delete_booking_4",
+          "method": "DELETE",
+          "url": "https://automationintesting.online/api/booking/4",
+          "request_payload": null,
+          "response_status": 202,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:16 GMT",
+            "Content-Length": "0",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "x-railway-request-id": "wE-lJPphQxWiilBUWVMv1w",
+            "x-hikari-trace": "cdg1.8vsn",
+            "x-railway-edge": "cdg1",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=L7vdraSY%2F0GlNKATqd2815Xc7lagR2H8KE7SHDGTxbMwicbzR%2FVYGNL7dvlTc%2FiKhB0%2FWFmfkWSslx4RSHFIPu5efZB83o8LQczfalnJ9Kdu7kmOKJ5u34EfwGehOLYfxlThqpcqHxMX%2FXA6QQ%3D%3D\"}]}",
+            "CF-RAY": "a4008775c8674b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": ""
+        },
+        {
+          "scenario": "create_booking_no_auth",
+          "method": "POST",
+          "url": "https://automationintesting.online/api/booking",
+          "request_payload": {
+            "roomid": 1,
+            "firstname": "Jordan2275",
+            "lastname": "Morgan0881",
+            "depositpaid": true,
+            "email": "test_ffdfb524@example.com",
+            "phone": "07922897430",
+            "bookingdates": {
+              "checkin": "2026-10-24",
+              "checkout": "2026-10-26"
+            }
+          },
+          "response_status": 201,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:17 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "iatKlbgYTSingawoYqdHTg",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.e9jw",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=c%2Fov%2FCXeXKBxX3mxC%2FnPcL77yu34SsVl%2FhiOXy3243TT9evaBqSwxl4gmoopnswpD6xCAE645p%2FAw8AaqcJdPrsVqZKWZYNQS6jdAWsZ%2F3JKBDW2V9QbozVx7neuCEQjIeV5qkIbxLWiwo3F7g%3D%3D\"}]}",
+            "CF-RAY": "a400877b3b68e1f1-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "bookingdates": {
+              "checkin": "2026-10-24",
+              "checkout": "2026-10-26"
+            },
+            "bookingid": 5,
+            "depositpaid": true,
+            "firstname": "Jordan2275",
+            "lastname": "Morgan0881",
+            "roomid": 1
+          }
+        },
+        {
+          "scenario": "create_booking_missing_fields",
+          "method": "POST",
+          "url": "https://automationintesting.online/api/booking",
+          "request_payload": {
+            "roomid": 1,
+            "firstname": "Test"
+          },
+          "response_status": 400,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:17 GMT",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-railway-request-id": "mI4vB37XTFKOplpM8Hk9cQ",
+            "x-railway-edge": "cdg1",
+            "x-hikari-trace": "cdg1.8vsn",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=dt3UEwi4YYfosl4eN%2Fk1ENgW%2B2ry9Mf0LdqJdIU5ajgAkfoOUF5OwbV3vVzo4Xy7bPpBItnCmoT2nck8LC2jJD9rzy2OdZAUAfsw9W03jVDeUb9OnDiaFAKBD6LGx%2B92mqXEBbLhCA8jgyq25w%3D%3D\"}]}",
+            "CF-RAY": "a400877d3b684b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": {
+            "errors": [
+              "Lastname should not be blank"
+            ]
+          }
+        },
+        {
+          "scenario": "get_invalid_booking",
+          "method": "GET",
+          "url": "https://automationintesting.online/api/booking/999999",
+          "request_payload": null,
+          "response_status": 404,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:17 GMT",
+            "Content-Length": "0",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "x-railway-request-id": "M7njNnMYRcCCBEurvEOTxA",
+            "x-hikari-trace": "cdg1.8vsn",
+            "x-railway-edge": "cdg1",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=9f%2FE6KNkV442uLW4fk5jV31WcudWkIZaKqFwXvH4riUQd6DJbys%2FmqtYumZtmnCKeJw06I%2F7DghAwsMJ2%2B3I90fu09i4aUzQHbFruqhKKAkQTMJ%2BnFw2tQm9MU%2BYt553ovh6F8DcIfCgzlULvA%3D%3D\"}]}",
+            "CF-RAY": "a400877fd9864b90-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": ""
+        },
+        {
+          "scenario": "delete_booking_no_auth",
+          "method": "DELETE",
+          "url": "https://automationintesting.online/api/booking/4",
+          "request_payload": null,
+          "response_status": 403,
+          "response_headers": {
+            "Date": "Thu, 24 Sep 2026 08:48:18 GMT",
+            "Content-Length": "0",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "x-railway-request-id": "zoQWQXNDQ5Kqx2AFYqdHTg",
+            "x-hikari-trace": "cdg1.e9jw",
+            "x-railway-edge": "cdg1",
+            "cf-cache-status": "DYNAMIC",
+            "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+            "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=KvCHt24MftFMmiXceWU%2FsV4hhRsPtoR%2BFjaoOwC7V%2BoWwwabs7TtoQFgywDRa7elgrBVUy0Kexb1Cs%2FenrGjsxjEf4BqnNXXW3gTyoZfKba%2ByAfJuv3D1ByuEzaGxrLkUI2Ei3yyuVoG%2FtIVzg%3D%3D\"}]}",
+            "CF-RAY": "a40087813abce1f1-MRS",
+            "alt-svc": "h3=\":443\"; ma=86400"
+          },
+          "response_body": ""
+        }
+      ],
+      "created_booking_id": 4,
+      "booking_payload": {
+        "roomid": 1,
+        "firstname": "Jordan2275",
+        "lastname": "Morgan0881",
+        "depositpaid": true,
+        "email": "test_ffdfb524@example.com",
+        "phone": "07922897430",
+        "bookingdates": {
+          "checkin": "2026-10-24",
+          "checkout": "2026-10-26"
+        }
+      }
+    }
+  },
+  "evidence_files": [
+    "auth_evidence.json",
+    "rooms_evidence.json",
+    "bookings_evidence.json"
+  ]
+}

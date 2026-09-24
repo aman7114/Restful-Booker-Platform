@@ -1,177 +1,306 @@
-# Test Spec: Restful-Booker-Platform (RBP)
+# Master Specification — AI QA Automation Contract
+# Restful Booker Platform
 
-## Gemini configuration
-# Put your own Gemini API key between the quotes before running generate_tests.py.
-# Do NOT commit this file to GitHub while it contains a real key.
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+## PURPOSE
 
-## Target
-- UI base URL: https://automationintesting.online
-- API base URL: https://automationintesting.online/api
-- The deployed demo is shared and resets its seeded data periodically.
-- Admin credentials for this demo: username `admin`, password `password`.
-- UI admin page: https://automationintesting.online/#/admin
+This document is the master contract given to the Gemini AI for test
+generation. The AI must generate executable test automation code
+STRICTLY based on:
 
-## Workflow
-1. generate_tests.py reads this file.
-2. Gemini uses the Playwright MCP server only to explore the real UI.
-3. Gemini uses the local `call_api` tool to inspect the real API responses.
-4. Gemini generates a small pytest + Playwright + requests project.
-5. The generated project is written under the `generated/` folder.
-6. After generation, run the generated project with normal pytest. MCP is NOT needed for test execution.
+1. This specification (spec.md)
+2. The UI specification (ui.md)
+3. The API specification (api.md)
+4. Collected UI evidence (accessibility snapshots, screenshots, discovered elements)
+5. Collected API evidence (actual API responses, endpoint behavior)
 
-## Test scope
+The AI must NOT:
+- Invent selectors that do not appear in the evidence
+- Invent endpoints not documented in api.md
+- Assume application behavior not observed in evidence
+- Hardcode credentials, URLs, or model names
+- Hardcode booking IDs, room IDs, or dynamic values
+- Use fixed dates — all dates must be runtime-calculated
 
-### UI tests
-Keep the UI suite small:
-1. Admin login with valid credentials.
-2. Admin login with invalid credentials.
-3. Browse rooms on the home page and assert that room content is visible.
-4. Open one room, choose a valid check-in/check-out date range, enter guest details, and submit a booking.
-5. Negative booking case: leave one required guest field empty and verify the booking is not successfully submitted.
+---
 
-Do not add extra UI flows.
+## TECHNOLOGY STACK
 
-### API tests
-Use Python `requests` only.
+| Component | Technology |
+|-----------|-----------|
+| UI Automation | Playwright + pytest-playwright |
+| API Tests | requests + pytest |
+| Test Framework | pytest |
+| Test Reports | pytest-html (HTML), junit.xml, execution.json |
+| Page Model | Page Object Model (POM) |
+| Configuration | python-dotenv (.env file) |
 
-Cover:
-1. POST `/auth/login`
-   - positive login
-   - negative login
-2. GET `/room/`
-   - verify status code and that the response contains room data
-3. POST `/booking/`
-   - create one booking using realistic test data
-   - verify status code and response schema
-4. GET `/booking/{id}`
-   - use the booking ID returned by the create-booking test
-   - verify status code and important response keys
+---
 
-Important:
-- The API paths are under `/api`.
-- Do not hardcode an authentication token.
-- Obtain a token dynamically from `/auth/login` when an authenticated API call requires it.
-- Use the token through a pytest fixture if needed.
-- Do not create a large data set or run loops against the public demo.
+## OUTPUT STRUCTURE
 
-## Page Object Model
-Create simple page objects under `pages/`:
+The AI must generate a complete, immediately executable test project.
 
-- `pages/base_page.py`
-  - shared actions only: navigate, click, fill, wait, get_text
-- `pages/home_page.py`
-  - home page / room browsing
-- `pages/admin_page.py`
-  - admin login
-- `pages/booking_page.py`
-  - room booking widget and guest booking form
+All output files must be returned in this JSON format:
 
-Rules:
-- Every page object inherits from `BasePage`.
-- Prefer `data-testid`, then accessible role/name, then CSS.
-- Never use XPath.
-- Test files must call page-object methods instead of raw locators.
-- Keep locators inside page objects.
-- Do not create unnecessary page classes.
+```json
+{
+  "files": [
+    {
+      "path": "pages/base_page.py",
+      "content": "..."
+    }
+  ]
+}
+```
 
-## Test framework
-- Python
-- pytest
-- pytest-playwright
-- requests
-- Playwright Python
-- No Selenium.
-- No unittest.
-- No Jenkins.
-- No Allure.
-- No database.
-- No Docker.
-- No extra frameworks.
+Paths are relative to the `generated/` directory.
 
-## Fixtures
-Create `conftest.py` with:
-- Playwright browser/page fixture support from pytest-playwright.
-- `base_url`
-- `api_base_url`
-- `auth_token` fixture that calls `/auth/login` and returns the token.
-- Keep fixtures small and readable.
+### Required Output Files
 
-## Assertions
-- Every UI test must contain at least one meaningful assertion.
-- Every API test must check the HTTP status code and relevant response body keys/schema.
-- Negative tests must verify the expected failure/validation behavior.
-- Avoid brittle assertions on full page text or exact dynamic counts.
+```
+conftest.py                     # pytest fixtures
+pytest.ini                      # pytest configuration
+requirements.txt                # test project dependencies
 
-## Generated project structure
-The generator must create exactly these files:
+pages/
+  base_page.py                  # Base page with shared methods
+  home_page.py                  # Home page POM
+  rooms_page.py                 # Rooms/listing POM
+  booking_page.py               # Reservation/booking POM
+  admin_page.py                 # Admin login/dashboard POM
 
-### FILE: pages/base_page.py
+tests/
+  ui/
+    test_home.py                # Home page tests
+    test_navigation.py          # Navigation tests
+    test_rooms.py               # Room discovery and selection tests
+    test_booking.py             # Booking/reservation tests
+    test_admin.py               # Admin login tests
+  api/
+    test_auth.py                # Authentication API tests
+    test_rooms_api.py           # Rooms API tests
+    test_bookings_api.py        # Bookings CRUD + negative tests
+```
+
+---
+
+## PAGE OBJECT MODEL REQUIREMENTS
+
+### BasePage
+
 ```python
-<code>
+class BasePage:
+    def __init__(self, page):
+        self.page = page
+
+    def navigate(self, url): ...
+    def wait_for_load(self): ...
+    def take_screenshot(self, name): ...
 ```
 
-### FILE: pages/home_page.py
+### HomePage
+
+Responsible for:
+- Verifying page load
+- Accessing navigation
+- Discovering rooms section
+
+### RoomsPage
+
+Responsible for:
+- Discovering room cards from DOM
+- Selecting a room
+- Clicking booking action
+- NOT treating "Our Rooms" heading as a room
+
+### BookingPage
+
+Responsible for:
+- Date picker interaction
+- Guest detail form filling
+- Submitting booking
+- Verifying confirmation
+
+### AdminPage
+
+Responsible for:
+- Entering credentials (from config/fixtures, never hardcoded)
+- Submitting login
+- Verifying dashboard
+
+### POM Rules
+
+- Business actions as methods: `rooms_page.select_available_room()`
+- No hardcoded MCP refs or dynamically-assigned IDs from the browser
+- All locators derived from evidence (ARIA roles, accessible names, data-testid)
+- No test assertions inside page classes
+
+---
+
+## UI TEST REQUIREMENTS
+
+### test_home.py
+
+- `test_home_page_loads` — Verify page title is non-empty and load succeeds
+- `test_navigation_is_visible` — Verify navigation element is present
+- `test_rooms_section_exists` — Verify rooms section is discoverable
+
+### test_navigation.py
+
+- `test_discover_navigation_links` — Discover nav links, verify count > 0
+- `test_navigation_links_are_clickable` — Verify each discovered link is functional
+
+### test_rooms.py
+
+- `test_discover_room_cards` — Verify rooms are discovered dynamically
+- `test_our_rooms_heading_not_a_room` — Assert "Our Rooms" text alone is not a room card
+- `test_select_room_and_navigate` — Select a room, click Book Now, verify URL changes
+
+### test_booking.py
+
+- `test_reservation_page_loads` — Verify reservation page loads
+- `test_calendar_controls_present` — Verify date picker exists
+- `test_booking_form_fields_present` — Verify guest fields exist
+- `test_submit_booking` — Fill and submit booking form with generated data
+
+### test_admin.py
+
+- `test_admin_page_loads` — Verify admin page loads
+- `test_admin_login_positive` — Login with valid credentials from .env
+- `test_admin_login_negative` — Login with invalid credentials, verify error
+
+---
+
+## API TEST REQUIREMENTS
+
+### test_auth.py
+
+- `test_login_valid_credentials` — POST /auth/login → 200 + token
+- `test_login_invalid_password` — POST /auth/login → 403
+- `test_login_empty_credentials` — POST /auth/login → 403
+
+### test_rooms_api.py
+
+- `test_get_all_rooms` — GET /room → 200 + non-empty rooms array
+- `test_rooms_have_required_fields` — Validate roomid, roomName, type, roomPrice
+- `test_get_single_room` — GET /room/{id} using discovered room ID → 200
+- `test_get_invalid_room` — GET /room/99999 → 404 or 500
+
+### test_bookings_api.py
+
+- `test_create_booking` — POST /booking → 201 + bookingid
+- `test_get_created_booking` — GET /booking/{id} → 200 + correct data
+- `test_update_booking` — PUT /booking/{id} → 200
+- `test_delete_booking` — DELETE /booking/{id} → 202/204
+- `test_get_deleted_booking` — GET /booking/{id} after delete → 404
+- `test_create_booking_missing_field` — POST without required field → 4xx
+- `test_create_booking_no_auth` — POST /booking without token → 403
+- `test_delete_without_auth` — DELETE /booking/{id} without token → 403
+
+---
+
+## FIXTURE REQUIREMENTS
+
+### conftest.py must provide:
+
 ```python
-<code>
+@pytest.fixture(scope="session")
+def config():
+    """Load configuration from .env"""
+    # Returns dict with UI_BASE_URL, API_BASE_URL, etc.
+
+@pytest.fixture(scope="session")
+def browser_context(playwright, config):
+    """Playwright browser context"""
+
+@pytest.fixture
+def page(browser_context):
+    """Fresh page per test"""
+
+@pytest.fixture(scope="session")
+def api_token(config):
+    """Obtain and cache auth token"""
+
+@pytest.fixture(scope="session")
+def room_id(config):
+    """Discover and cache a valid room ID"""
+
+@pytest.fixture
+def booking_payload(room_id):
+    """Generate a fresh booking payload per test"""
 ```
 
-### FILE: pages/admin_page.py
-```python
-<code>
+---
+
+## PYTEST CONFIGURATION
+
+### pytest.ini
+
+```ini
+[pytest]
+testpaths = tests
+addopts = --html=reports/html/report.html --self-contained-html
+          --junitxml=reports/junit.xml
+markers =
+    ui: UI tests
+    api: API tests
 ```
 
-### FILE: pages/booking_page.py
-```python
-<code>
+---
+
+## REPORTING REQUIREMENTS
+
+### execution.json structure:
+
+```json
+{
+  "total": 0,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 0,
+  "duration_seconds": 0.0,
+  "tests": [
+    {
+      "name": "test_name",
+      "status": "passed|failed|skipped|error",
+      "duration_seconds": 0.0,
+      "failure_message": null,
+      "traceback": null
+    }
+  ]
+}
 ```
 
-### FILE: tests/ui/test_admin_login.py
-```python
-<code>
-```
+---
 
-### FILE: tests/ui/test_booking.py
-```python
-<code>
-```
+## GENERATION RULES — CRITICAL
 
-### FILE: tests/api/test_auth_api.py
-```python
-<code>
-```
+1. **Evidence-Only Selectors:** All selectors must come from UI evidence.
+   Never invent role attributes, test IDs, or class names not seen in evidence.
 
-### FILE: tests/api/test_rooms_api.py
-```python
-<code>
-```
+2. **No Hardcoded Credentials:** All credentials come from pytest fixtures
+   which load from .env via python-dotenv.
 
-### FILE: tests/api/test_booking_api.py
-```python
-<code>
-```
+3. **No Hardcoded URLs:** Base URLs come from config fixture.
 
-### FILE: conftest.py
-```python
-<code>
-```
+4. **Runtime Dates Only:** Use `datetime.date.today()` + offsets. Never
+   write literal date strings.
 
-### FILE: requirements.txt
-```text
-<dependencies>
-```
+5. **Runtime Data Only:** Guest names, emails, phones — generate with
+   uuid/random, not fixed strings.
 
-## Important generation rules
-- First explore the real site with Playwright MCP.
-- Use accessibility snapshots and real element names/roles where possible.
-- Inspect the admin login page and one room booking flow.
-- Use `call_api` to confirm the real request/response shapes for:
-  - POST `https://automationintesting.online/api/auth/login`
-  - GET `https://automationintesting.online/api/room/`
-  - POST `https://automationintesting.online/api/booking/`
-  - GET `https://automationintesting.online/api/booking/{id}`
-- Do not guess selectors when the real site can be inspected.
-- Keep the generated code straightforward enough for a beginner/intermediate QA automation project.
-- Do not add features that are not requested above.
-- Do not include markdown explanations outside the `### FILE:` blocks.
-- Each file must be complete and directly runnable.
+6. **No Fixed IDs:** Room IDs come from GET /room response.
+   Booking IDs come from POST /booking response.
+
+7. **POM Separation:** Page classes contain locators and actions only.
+   Assertions belong in test functions only.
+
+8. **Executable Code:** All generated code must be immediately runnable
+   without modification. No placeholder comments like `# TODO: implement`.
+
+9. **Meaningful Test Names:** Test function names must describe the behavior
+   being verified.
+
+10. **No Invented Workflows:** Do not generate tests for features not
+    documented in ui.md, api.md, or observed in evidence.
