@@ -1,43 +1,41 @@
-from .base_page import BasePage
+from playwright.sync_api import Page, expect
+from pages.base_page import BasePage
 
 
 class AdminPage(BasePage):
-    username_selector = '#username'
-    password_selector = '#password'
-    login_selector = '#doLogin'
-    logout_selector = 'button[type="submit"]'
+    def __init__(self, page: Page):
+        super().__init__(page)
+        self.username_input = self.page.get_by_placeholder("Enter username")
+        self.password_input = self.page.get_by_label("Password")
+        self.login_button = self.page.get_by_role("button", name="Login")
+        self.logout_button = self.page.get_by_role("button", name="Logout")
+        # Error alert uses ARIA role=alert
+        self.error_alert = self.page.get_by_role("alert")
 
-    def open(self):
-        self.page.goto(self.base_url.rstrip("/") + '/admin/')
-        self.page.wait_for_timeout(1500)
+    def navigate_to_admin(self, base_url: str, admin_path: str):
+        self.navigate(f"{base_url}{admin_path}")
+        self.page.wait_for_load_state("networkidle")
+        # May redirect to /admin/rooms if already logged in
+        assert admin_path in self.page.url, (
+            f"Expected URL to contain '{admin_path}', got: {self.page.url}"
+        )
 
-    def login(self, username="admin", password="password"):
-        if not all((self.username_selector, self.password_selector, self.login_selector)):
-            raise RuntimeError("Admin login controls were not uniquely observed by Playwright MCP.")
-        self.page.locator(self.username_selector).fill(username)
-        self.page.locator(self.password_selector).fill(password)
-        self.page.locator(self.login_selector).click()
-        self.page.wait_for_timeout(1500)
+    def login(self, username: str, password: str):
+        expect(self.username_input).to_be_visible(timeout=5000)
+        self.username_input.fill(username)
+        self.password_input.fill(password)
+        self.login_button.click()
 
-    def is_logged_in(self):
-        # The admin SPA can keep the same URL after authentication and may not
-        # render a logout control in the initial DOM evidence. The username
-        # control is observed before login, so use its post-login visibility as
-        # the deterministic state signal: visible form => still logged out;
-        # hidden/removed form => authenticated.
-        if self.username_selector:
-            locator = self.page.locator(self.username_selector)
-            if locator.count() == 0:
-                return True
-            try:
-                return not locator.first.is_visible()
-            except Exception:
-                return False
-        if self.logout_selector:
-            return self.page.locator(self.logout_selector).count() > 0
-        return False
+    def is_logged_in(self) -> bool:
+        """True if the Logout button is visible."""
+        try:
+            self.logout_button.wait_for(state="visible", timeout=3000)
+            return True
+        except Exception:
+            return False
 
-    def logout(self):
-        if not self.logout_selector:
-            raise RuntimeError("Logout control was not observed by Playwright MCP.")
-        self.page.locator(self.logout_selector).click()
+    def ensure_logged_out(self):
+        """If currently logged in, log out first."""
+        if self.is_logged_in():
+            self.logout_button.click()
+            self.page.wait_for_load_state("networkidle")
